@@ -1,0 +1,3 @@
+Configurar o Git Local : 
+    git config --global user.name AlilsonWolf
+    git config --global user.email techangel421@gmail.com
