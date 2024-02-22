@@ -1,3 +1,9 @@
-Configurar o Git Local : 
+Configurar o Git Local: 
     git config --global user.name AlilsonWolf
     git config --global user.email techangel421@gmail.com
+
+Criar um Projeto:
+    dotnet new mvc -o Pokedex
+
+Executar um Projeto:
+    dotnet watch run
