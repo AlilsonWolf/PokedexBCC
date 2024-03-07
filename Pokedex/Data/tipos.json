@@ -1,0 +1,74 @@
+﻿[
+  {
+    "Nome": "Aço",
+    "Cor": "#aab"
+  },
+  {
+    "Nome": "Água",
+    "Cor": "#39f"
+  },
+  {
+    "Nome": "Dragão",
+    "Cor": "#76e"
+  },
+  {
+    "Nome": "Elétrico",
+    "Cor": "#fc3"
+  },
+  {
+    "Nome": "Fada",
+    "Cor": "#e9e"
+  },
+  {
+    "Nome": "Fantasma",
+    "Cor": "#66b"
+  },
+  {
+    "Nome": "Fogo",
+    "Cor": "#f42"
+  },
+  {
+    "Nome": "Gelo",
+    "Cor": "#6cf"
+  },
+  {
+    "Nome": "Inseto",
+    "Cor": "#ab6"
+  },
+  {
+    "Nome": "Lutador",
+    "Cor": "#b54"
+  },
+  {
+    "Nome": "Normal",
+    "Cor": "#aa9"
+  },
+  {
+    "Nome": "Pedra",
+    "Cor": "#ba6"
+  },
+  {
+    "Nome": "Planta",
+    "Cor": "#7c5"
+  },
+  {
+    "Nome": "Psíquico",
+    "Cor": "#f59"
+  },
+  {
+    "Nome": "Sombrio",
+    "Cor": "#754"
+  },
+  {
+    "Nome": "Terrestre",
+    "Cor": "#db5"
+  },
+  {
+    "Nome": "Venenoso",
+    "Cor": "#a59"
+  },
+  {
+    "Nome": "Voador",
+    "Cor": "#89f"
+  }
+]
