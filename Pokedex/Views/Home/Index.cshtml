@@ -1,5 +1,14 @@
-﻿@{
+﻿@model List<Pokemon>
+@{
     ViewData["Title"] = "Home";
+    var tipos = (List<Tipo>)ViewData["Tipos"];
+    string Cor(string nome)
+    {
+        return tipos
+        .Where(t => t.Nome == nome)
+        .Select(t => t.Cor)
+        .FirstOrDefault();
+    }    
 }
 
 <section class="pt-5 pb-3 text-center container">
@@ -7,44 +16,17 @@
                 <div class="col mx-auto">
                     <h1>Pokédex</h1>
                     <div class="group">
-                        <button id="btn-all" class="btn btn-md my-2 text-white bg-secondary btn-filter">Ver
-                            Todos</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#aab">Aço</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#39f">Água</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#76e">Dragão</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#fc3">Elétrico</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#e9e">Fada</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#66b">Fantasma</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#f42">Fogo</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#6cf">Gelo</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#ab6">Inseto</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#b54">Lutador</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#aa9">Normal</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#ba6">Pedra</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#7c5">Planta</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#f59">Psíquico</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#754">Sombrio</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#db5">Terrestre</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#a59">Venenoso</button>
-                        <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:#89f">Voador</button>
+                        <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter">Ver
+                            Todos
+                            </button>
+                            @foreach (var tipo in tipos)
+                            {
+                                 <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
+                            style="background-color:@tipo.Cor">@tipo.Nome
+                            </button>
+                            }
+                       
+ 
                     </div>
                 </div>
             </div>
@@ -54,176 +36,28 @@
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-
+                    @foreach(var pokemon in Model){
                     <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer planta venenoso" onclick="GetInfo(001)">
-                            <img src="img/pokemons/001.png" class="card-img-top" width="100%" height="300"
-                                alt="Bulbasaur" />
+                    <div class="col" onclick="window.location = '/Home/Details/@pokemon.Numero'">
+                        <div class="card shadow-sm cursor-pointer @string.Join(' ', pokemon.Tipo)">
+                            <img src="@pokemon.Imagem" class="card-img-top" width="100%" height="300"
+                                alt="@pokemon.Nome" />
                             <div class="card-body">
-                                <p class="card-text mb-0">Nº 001</p>
-                                <h3 class="card-title">Bulbasaur</h3>
+                                <p class="card-text mb-0">Nº @pokemon.Numero.ToString("000")</p>
+                                <h3 class="card-title">@pokemon.Nome</h3>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#7c5">Planta</a>
+                                      @foreach (var tipo in pokemon.Tipo)
+                                      {
                                         <a href="#" class="btn my-2 text-white"
-                                            style="background-color:#a59">Venenoso</a>
+                                            style="background-color:@Cor(tipo)">@tipo</a>
+                                      }
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer planta venenoso" onclick="GetInfo(002)">
-                            <img src="img/pokemons/002.png" class="card-img-top" width="100%" height="300"
-                                alt="Ivysaur" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 002</p>
-                                <h3 class="card-title">Ivysaur</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#7c5">Planta</a>
-                                        <a href="#" class="btn my-2 text-white"
-                                            style="background-color:#a59">Venenoso</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer planta venenoso" onclick="GetInfo(003)">
-                            <img src="img/pokemons/003.png" class="card-img-top" width="100%" height="300"
-                                alt="Venusaur" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 003</p>
-                                <h3 class="card-title">Venusaur</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#7c5">Planta</a>
-                                        <a href="#" class="btn my-2 text-white"
-                                            style="background-color:#a59">Venenoso</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer fogo" onclick="GetInfo(004)">
-                            <img src="img/pokemons/004.png" class="card-img-top" width="100%" height="300"
-                                alt="Charmander" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 004</p>
-                                <h3 class="card-title">Charmander</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#f42">Fogo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer fogo" onclick="GetInfo(005)">
-                            <img src="img/pokemons/005.png" class="card-img-top" width="100%" height="300"
-                                alt="Charmeleon" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 005</p>
-                                <h3 class="card-title">Charmeleon</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#f42">Fogo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer fogo voador" onclick="GetInfo(006)">
-                            <img src="img/pokemons/006.png" class="card-img-top" width="100%" height="300"
-                                alt="Charizard" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 006</p>
-                                <h3 class="card-title">Charizard</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#f42">Fogo</a>
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#89f">Voador</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer água" onclick="GetInfo(007)">
-                            <img src="img/pokemons/007.png" class="card-img-top" width="100%" height="300"
-                                alt="Squirtle" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 007</p>
-                                <h3 class="card-title">Squirtle</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#39f">Água</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer água" onclick="GetInfo(8)">
-                            <img src="img/pokemons/008.png" class="card-img-top" width="100%" height="300"
-                                alt="Wartortle" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 008</p>
-                                <h3 class="card-title">Wartortle</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#39f">Água</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer água" onclick="GetInfo(9)">
-                            <img src="img/pokemons/009.png" class="card-img-top" width="100%" height="300"
-                                alt="Blastoise" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 009</p>
-                                <h3 class="card-title">Blastoise</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#39f">Água</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
+                    }
                     <!-- Card Pokemon - Inicio -->
                     <div class="col">
                         <div class="card shadow-sm cursor-pointer inseto" onclick="GetInfo(010)">
