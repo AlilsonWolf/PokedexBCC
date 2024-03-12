@@ -16,13 +16,13 @@
                 <div class="col mx-auto">
                     <h1>Pokédex</h1>
                     <div class="group">
-                        <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter">Ver
+                        <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter" onclick = "filter('all')">Ver
                             Todos
                             </button>
                             @foreach (var tipo in tipos)
                             {
                                  <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
-                            style="background-color:@tipo.Cor">@tipo.Nome
+                            style="background-color:@tipo.Cor" onclick = "filter('@tipo.Nome')">@tipo.Nome
                             </button>
                             }
                        
@@ -58,63 +58,9 @@
                         </div>
                     </div>
                     }
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer inseto" onclick="GetInfo(010)">
-                            <img src="img/pokemons/010.png" class="card-img-top" width="100%" height="300"
-                                alt="Caterpie" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 010</p>
-                                <h3 class="card-title">Caterpie</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#ab6">Inseto</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
+                    
 
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer inseto" onclick="GetInfo(011)">
-                            <img src="img/pokemons/011.png" class="card-img-top" width="100%" height="300"
-                                alt="Metapod" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 011</p>
-                                <h3 class="card-title">Metapod</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#ab6">Inseto</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-                    <!-- Card Pokemon - Inicio -->
-                    <div class="col">
-                        <div class="card shadow-sm cursor-pointer inseto voador" onclick="GetInfo(012)">
-                            <img src="img/pokemons/012.png" class="card-img-top" width="100%" height="300"
-                                alt="Butterfree" />
-                            <div class="card-body">
-                                <p class="card-text mb-0">Nº 012</p>
-                                <h3 class="card-title">Butterfree</h3>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#ab6">Inseto</a>
-                                        <a href="#" class="btn my-2 text-white" style="background-color:#89f">Voador</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Pokemon - Fim -->
-
-
-                    <div id="zeroPokemon" class="col-lg-12 text-center" hidden>
+                    <div id="zeroPokemon" class="col-lg-12 text-center d-none">
                         <h1 class="my-3 text-danger">Nenhum Pokemon Encontrado</h1>
                     </div>
                 </div>
